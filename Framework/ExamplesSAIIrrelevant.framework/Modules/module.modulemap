@@ -1,0 +1,10 @@
+framework module ExamplesSAIIrrelevant {
+  umbrella header "ExamplesSAIIrrelevant.h"
+
+  export *
+  module * { export * }
+}
+
+module ExamplesSAIIrrelevant.Swift {
+    header "ExamplesSAIIrrelevant-Swift.h"
+}

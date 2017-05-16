@@ -1,0 +1,10 @@
+framework module SAI {
+  umbrella header "SAI.h"
+
+  export *
+  module * { export * }
+}
+
+module SAI.Swift {
+    header "SAI-Swift.h"
+}
