@@ -6,13 +6,13 @@ SAI aims to support multitude of platforms including MacOs, iOS and TvOS.
 
 Read more on [saiframework.com](https://www.saiframework.com)
 
-###Installation instructions for this example app
+### Installation instructions for this example app
 
 App expects the MNIST image dataset for training and classification of handwritten characters to be present under `Data/mnist_png` (with training and testing subdirectories). You can download the dataset [here](https://www.dropbox.com/s/7k2hh0vo660pnt1/mnist_png14.zip?dl=1).
 
 If you don't download and expand the dataset, the Xcode build process will try it to do automatically so the first build of the app might take longer.
 
-###Quick sample code
+### Quick sample code
 ```swift
 let hiddenLayer = PerceptronHiddenLayer(numberOfInputs: 14*14,
                                         neuronCount: 66,
@@ -41,5 +41,5 @@ let array = net.evaluate(inputLayer: inputLayer).outputs
 let result = array.index(of: array.max() ?? -10.0) ?? -1
 ```
 
-###Currently implemented in SAI
+### Currently implemented in SAI
 - Multilayer perceptron
