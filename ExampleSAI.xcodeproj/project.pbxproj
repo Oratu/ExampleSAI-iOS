@@ -143,7 +143,7 @@
 				3E78A2D71EACC75C00C89B3D /* Sources */,
 				3E78A2D81EACC75C00C89B3D /* Frameworks */,
 				3E78A2D91EACC75C00C89B3D /* Resources */,
-				6F9C54B51EB7D037006DF1F6 /* ShellScript */,
+				6F9C54B51EB7D037006DF1F6 /* Copy mnist png images */,
 				3E78A2F91EACC77100C89B3D /* Embed Frameworks */,
 				6F193CBD1EC9E47A008A48DB /* Strip frameworks */,
 				6F9C54B21EB7CFB0006DF1F6 /* CopyFiles */,
@@ -219,18 +219,19 @@
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
 		};
-		6F9C54B51EB7D037006DF1F6 /* ShellScript */ = {
+		6F9C54B51EB7D037006DF1F6 /* Copy mnist png images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Copy mnist png images";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#rsync -av ${SRCROOT}/Data/. ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Data/";
+			shellScript = "if [ ! -d ${SRCROOT}/Data/mnist_png ]\nthen\ncurl \"https://www.dropbox.com/s/7k2hh0vo660pnt1/mnist_png14.zip?dl=1\" -L -o \"mnist_png14.zip\"\nunzip ${SRCROOT}/mnist_png14.zip -d ${SRCROOT}/Data/\nrm ${SRCROOT}/mnist_png14.zip\nfi\n\nrsync -av ${SRCROOT}/Data/. ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Data/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
