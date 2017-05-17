@@ -161,6 +161,7 @@ SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant48AbstractClassificationResultDetailView
 SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant43AbstractClassificationResultsViewController")
 @interface AbstractClassificationResultsViewController : UICollectionViewController
 - (void)viewDidLoad;
+- (void)viewWillDisappear:(BOOL)animated;
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView * _Nonnull)collectionView SWIFT_WARN_UNUSED_RESULT;
 - (NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;

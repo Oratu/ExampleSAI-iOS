@@ -43,3 +43,6 @@ let result = array.index(of: array.max() ?? -10.0) ?? -1
 
 ### Currently implemented in SAI
 - Multilayer perceptron
+
+### Note
+This example includes two frameworks, first is the SAI.framework which is the actual SAI framework as advertised. The second framework is called **ExamplesSAIIrrelevant.framework as is necessary only for this example app**. It contains all the irrelevant stuff not related to the work with the artificial networks like enabling/disabling buttons on the UI or providing data to a UITableView. We did choose this approach so that the example app only contains code relevant to creating, training, evaluating, loading and storing of artificial networks so you don't have a hard time to find relevant code. 
