@@ -211,6 +211,9 @@ class ClassificationViewController: AbstractClassificationViewController {
         if let dvc = segue.destination as? ClassificationResultsViewController {
             // set the destination view controller „network“ member variable to the current network
             dvc.network = self.network
+        } else if let dvc = segue.destination as? ScribeViewController {
+            // set the destination view controller „network“ member variable to the current network
+            dvc.network = self.network
         }
     }
     

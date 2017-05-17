@@ -37,6 +37,23 @@ public class SAIButton: UIButton {
 }
 
 @IBDesignable
+public class SAIBorderedView: UIView {
+    @IBInspectable dynamic private var cornerRadius:CGFloat {
+        get {return self.layer.cornerRadius}
+        set {self.layer.cornerRadius = newValue}
+    }
+    @IBInspectable dynamic private var borderColor:UIColor? {
+        get {return self.layer.borderColor == nil ? nil : UIColor(cgColor:self.layer.borderColor!)}
+        set {self.layer.borderColor = newValue?.cgColor}
+    }
+    @IBInspectable dynamic private var borderWidth:CGFloat {
+        get {return self.layer.borderWidth}
+        set {self.layer.borderWidth = newValue}
+    }
+
+}
+
+@IBDesignable
 public class SAICircleProgressView: UIView {
     @IBInspectable dynamic private var color:UIColor = UIColor.blue { didSet {DispatchQueue.main.async {self.setNeedsLayout()}}}
     @IBInspectable dynamic private var startAngle:CGFloat = CGFloat.pi * 1.5
@@ -90,5 +107,92 @@ public class SAICircleProgressView: UIView {
         self.maxValue = 4
         self.currentValue = 3
         self.setNeedsLayout()
+    }
+}
+
+public class SAIScribeView: UIView {
+    @IBInspectable dynamic private var strokeColor:UIColor = UIColor.black
+    @IBInspectable dynamic private var strokeWidth:CGFloat = 5
+
+    private let wholePath = UIBezierPath()
+    private let strokePath = UIBezierPath()
+
+    private let wholePathLayer = CAShapeLayer()
+    private let strokePathLayer = CAShapeLayer()
+
+    public var imageUpdateListener:((UIImage) -> Void)?
+
+    public func clear() {
+        self.strokePath.removeAllPoints()
+        self.wholePath.removeAllPoints()
+        self.setNeedsLayout()
+    }
+
+    public override func layoutSubviews() {
+        if self.wholePathLayer.superlayer == nil {
+            self.wholePathLayer.fillColor = nil
+            self.strokePathLayer.fillColor = nil
+            self.layer.addSublayer(self.wholePathLayer)
+            self.layer.addSublayer(self.strokePathLayer)
+        }
+        self.wholePathLayer.lineWidth = self.strokeWidth
+        self.strokePathLayer.lineWidth = self.strokeWidth
+        self.wholePathLayer.strokeColor = self.strokeColor.cgColor
+        self.strokePathLayer.strokeColor = self.strokeColor.cgColor
+        self.strokePathLayer.lineWidth = self.strokeWidth
+        self.wholePathLayer.path = self.wholePath.cgPath
+        self.strokePathLayer.path = self.strokePath.cgPath
+        if !self.wholePath.isEmpty || !self.strokePath.isEmpty, let iul = self.imageUpdateListener, let snap = self.snapshot() {
+            DispatchQueue.global(qos: .background).async {
+                iul(snap)
+            }
+        }
+        super.layoutSubviews()
+    }
+
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        if let point = touches.first?.location(in: self) {
+            self.strokePath.move(to: point)
+        }
+    }
+
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        if let point = touches.first?.location(in: self) {
+            self.strokePath.addLine(to: point)
+            self.contentUpdated()
+        }
+    }
+
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.endStroke()
+    }
+
+    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        self.endStroke()
+    }
+
+    private func endStroke() {
+        self.wholePath.append(self.strokePath)
+        self.strokePath.removeAllPoints()
+    }
+
+    private func contentUpdated() {
+        self.setNeedsLayout()
+    }
+
+    private func snapshot() -> UIImage? {
+        //guard let view = self.snapshotView(afterScreenUpdates: true) else {return nil}
+
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 1)
+        self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return screenshot
     }
 }

@@ -19,6 +19,7 @@
 		6F22F54D1EBA304600EE41AE /* ClassificationResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22F54C1EBA304600EE41AE /* ClassificationResultDetailViewController.swift */; };
 		6F22F55A1EBF17B400EE41AE /* LoadNetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F22F5591EBF17B400EE41AE /* LoadNetTableViewController.swift */; };
 		6F9C54B81EB8C1CC006DF1F6 /* ClassificationResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9C54B71EB8C1CC006DF1F6 /* ClassificationResultsViewController.swift */; };
+		6FB673311ECC2B6C005A9ACC /* ScribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB673301ECC2B6C005A9ACC /* ScribeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,7 @@
 		6F22F5591EBF17B400EE41AE /* LoadNetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadNetTableViewController.swift; sourceTree = "<group>"; };
 		6F9C549C1EB76636006DF1F6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		6F9C54B71EB8C1CC006DF1F6 /* ClassificationResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassificationResultsViewController.swift; sourceTree = "<group>"; };
+		6FB673301ECC2B6C005A9ACC /* ScribeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScribeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				3E78A2E01EACC75C00C89B3D /* ClassificationViewController.swift */,
 				6F9C54B71EB8C1CC006DF1F6 /* ClassificationResultsViewController.swift */,
 				6F22F54C1EBA304600EE41AE /* ClassificationResultDetailViewController.swift */,
+				6FB673301ECC2B6C005A9ACC /* ScribeViewController.swift */,
 			);
 			name = Classification;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB673311ECC2B6C005A9ACC /* ScribeViewController.swift in Sources */,
 				6F22F54D1EBA304600EE41AE /* ClassificationResultDetailViewController.swift in Sources */,
 				6F22F55A1EBF17B400EE41AE /* LoadNetTableViewController.swift in Sources */,
 				3E78A2E11EACC75C00C89B3D /* ClassificationViewController.swift in Sources */,
