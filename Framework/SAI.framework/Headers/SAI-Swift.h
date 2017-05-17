@@ -133,10 +133,22 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import UIKit;
+@import CoreGraphics;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+
+@interface UIImage (SWIFT_EXTENSION(SAI))
+/// Returns a grayscale version of the image.
+/// \param size The size to resize the grayscale image to.
+///
+///
+/// returns:
+/// A grayscale resized version of the image.
+- (UIImage * _Nullable)grayscaleImageWithSize:(CGSize)size SWIFT_WARN_UNUSED_RESULT;
+@end
+
 
 @interface UIImage (SWIFT_EXTENSION(SAI))
 @end

@@ -205,10 +205,25 @@ SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant34AbstractLoadNetTableViewController")
 @end
 
 
+SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant28AbstractScribeViewController")
+@interface AbstractScribeViewController : UIViewController
+- (void)viewDidLoad;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant21InitialViewController")
 @interface InitialViewController : UIViewController
 - (void)viewDidAppear:(BOOL)animated;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant15SAIBorderedView")
+@interface SAIBorderedView : UIView
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -231,6 +246,23 @@ SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant21SAICircleProgressView")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class UIImage;
+@class UITouch;
+@class UIEvent;
+
+SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant13SAIScribeView")
+@interface SAIScribeView : UIView
+@property (nonatomic, copy) void (^ _Nullable imageUpdateListener)(UIImage * _Nonnull);
+- (void)clear;
+- (void)layoutSubviews;
+- (void)touchesBegan:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesMoved:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesEnded:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (void)touchesCancelled:(NSSet<UITouch *> * _Nonnull)touches withEvent:(UIEvent * _Nullable)event;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
 
 SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant17TOCViewController")
 @interface TOCViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
@@ -240,6 +272,10 @@ SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant17TOCViewController")
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface UIImage (SWIFT_EXTENSION(ExamplesSAIIrrelevant))
 @end
 
 #pragma clang diagnostic pop
