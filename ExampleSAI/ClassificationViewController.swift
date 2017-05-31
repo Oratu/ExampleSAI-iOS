@@ -53,7 +53,7 @@ class ClassificationViewController: AbstractClassificationViewController {
         // when we have the number of inputs for the hidden layer we can create it.
         // we just need the number of neurons the hidden layer has to have, the neuron class we want the layer to create and the activation function it should use.
         // Optionally we can adjust the learning rate of the layer and also so called momentum
-        let hiddenLayer = PerceptronHiddenLayer(numberOfInputs: trainingInputLayer.numberOfOutputs, neuronCount: numberOfHiddenLayerNeurons, neuronType: BasicDeepNeuron.self, activationFunction: CommonActivationFunction.tanh, learningRate: 0.05)
+        let hiddenLayer = PerceptronHiddenLayer(numberOfInputs: trainingInputLayer.numberOfOutputs, neuronCount: numberOfHiddenLayerNeurons, activationFunction: CommonActivationFunction.tanh, learningRate: 0.05)
         
         // we can create the output layer again knowing the count of input this layer will receive. Also we need to know how many output we want to have.
         // for every digit we will have an output. We have 10 digits (0, 1, ... 9) so we will have 10 outputs. When we then evaluate the network we will get 
@@ -62,7 +62,7 @@ class ClassificationViewController: AbstractClassificationViewController {
         // is on the last index the network „thinks“ the input image is a 9.
         // To create the output layer we also need the Neuron type the layer should create and the activation function we want it to use.
         // Optionally we can adjust the learning rate of the layer and also so called momentum
-        let outputLayer = PerceptronOutputLayer(numberOfInputs: hiddenLayer.numberOfOutputs, neuronCount: 10, neuronType: BasicOutputNeuron.self, activationFunction: CommonActivationFunction.tanh)
+        let outputLayer = PerceptronOutputLayer(numberOfInputs: hiddenLayer.numberOfOutputs, neuronCount: 10, activationFunction: CommonActivationFunction.tanh)
 
         // finally we can create the neural network using the training input layer, the output layer and the hidden layer we created above
         guard let network = BasicTrainableFeedForwardNetwork(trainingLayer:trainingInputLayer, outputLayer: outputLayer, hiddenLayers: [hiddenLayer]) else {
