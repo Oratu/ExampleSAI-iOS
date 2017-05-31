@@ -2,7 +2,7 @@
 //  ScribeViewController.swift
 //  ExampleSAI
 //
-//  Created by Evil Clay on 16/05/2017.
+//  Created by Karol Sladecek on 16/05/2017.
 //  Copyright © 2017 Orátu, s.r.o. All rights reserved.
 //
 
