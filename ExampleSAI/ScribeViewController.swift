@@ -31,7 +31,7 @@ class ScribeViewController: AbstractScribeViewController {
 
         //evaluate the image and get the array of outputs (first item is the probability of the image being the digit 0 ...and so on... the
         //last item is the probability of the image being a 9)
-        let array = net.evaluate(inputLayer: imageInputLayer).outputs
+        let array = net.evaluate(inputLayer: imageInputLayer).outputs as! [Float]
 
         //as the result we take the index of the highest probability
         let probability = array.max() ?? -1.0

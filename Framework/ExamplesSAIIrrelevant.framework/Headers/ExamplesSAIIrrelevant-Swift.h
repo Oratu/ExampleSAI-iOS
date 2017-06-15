@@ -172,18 +172,19 @@ SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant43AbstractClassificationResultsViewContr
 @end
 
 @class SAICircleProgressView;
+@class UIAlertController;
 
-SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant36AbstractClassificationViewController")
-@interface AbstractClassificationViewController : UIViewController
+SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant30AbstractTrainingViewController")
+@interface AbstractTrainingViewController : UIViewController
 @property (nonatomic, readonly, weak) IBOutlet SAICircleProgressView * _Null_unspecified setSampleProgressView;
 @property (nonatomic, readonly, weak) IBOutlet SAICircleProgressView * _Null_unspecified setProgressView;
 @property (nonatomic) BOOL * _Nullable stopTraining;
 - (void)viewDidLoad;
-- (NSArray<NSString *> * _Nonnull)imagePathsForNumber:(NSInteger)number count:(NSInteger)count training:(BOOL)training SWIFT_WARN_UNUSED_RESULT;
 - (void)updateInterface;
 - (void)setCurrentAction:(NSString * _Nullable)action;
+- (UIAlertController * _Nonnull)createNetDialog SWIFT_WARN_UNUSED_RESULT;
+- (UIAlertController * _Nonnull)trainNetDialog SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)isNetworkInitialized SWIFT_WARN_UNUSED_RESULT;
-- (void)createNetWithNumberOfHiddenLayerNeurons:(NSInteger)numberOfHiddenLayerNeurons;
 - (void)saveNetWithName:(NSString * _Nonnull)name;
 - (NSString * _Nullable)networkDescription SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
@@ -191,8 +192,21 @@ SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant36AbstractClassificationViewController")
 @end
 
 
+SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant36AbstractClassificationViewController")
+@interface AbstractClassificationViewController : AbstractTrainingViewController
+- (UIAlertController * _Nonnull)createNetDialog SWIFT_WARN_UNUSED_RESULT;
+- (UIAlertController * _Nonnull)trainNetDialog SWIFT_WARN_UNUSED_RESULT;
+- (NSArray<NSString *> * _Nonnull)imagePathsForNumber:(NSInteger)number count:(NSInteger)count training:(BOOL)training SWIFT_WARN_UNUSED_RESULT;
+- (void)updateInterface;
+- (void)createNetWithNumberOfHiddenLayerNeurons:(NSInteger)numberOfHiddenLayerNeurons;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant34AbstractLoadNetTableViewController")
 @interface AbstractLoadNetTableViewController : UITableViewController
+@property (nonatomic, copy) NSString * _Nullable subdir;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
@@ -209,6 +223,31 @@ SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant34AbstractLoadNetTableViewController")
 SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant28AbstractScribeViewController")
 @interface AbstractScribeViewController : UIViewController
 - (void)viewDidLoad;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant38AbstractTypingPredictionViewController")
+@interface AbstractTypingPredictionViewController : AbstractTrainingViewController
+- (UIAlertController * _Nonnull)createNetDialog SWIFT_WARN_UNUSED_RESULT;
+- (UIAlertController * _Nonnull)trainNetDialog SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nonnull)loadTextSourceFile SWIFT_WARN_UNUSED_RESULT;
+- (void)updateInterface;
+- (void)createNetWithNumberOfRecurrentLayers:(NSInteger)numberOfRecurrentLayers;
+- (void)trainNetWithSamples:(NSString * _Nonnull)samples repeating:(NSInteger)repeating;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC21ExamplesSAIIrrelevant34AbstractTypingResultViewController")
+@interface AbstractTypingResultViewController : UIViewController <UITextFieldDelegate>
+@property (nonatomic, copy) NSString * _Nullable sourceText;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
+- (NSArray<NSString *> * _Nonnull)predictForText:(NSArray<NSString *> * _Nonnull)textTokens SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end

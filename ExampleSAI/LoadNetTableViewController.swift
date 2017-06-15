@@ -35,7 +35,14 @@ class LoadNetTableViewController: AbstractLoadNetTableViewController {
         //The returning network can then be cast to a specific class.
         if let net = SAIStorageService.loadNet(url: url) {
             self.network = net
-            self.performSegue(withIdentifier: "BackToClassificationSegue", sender: nil)
+            switch self.subdir ?? "" {
+            case MLP_NET_SUBDIR:
+                self.performSegue(withIdentifier: "BackToClassificationSegue", sender: nil)
+            case ELMAN_RNN_NET_SUBDIR:
+                self.performSegue(withIdentifier: "BackToTypingSegue", sender: nil)
+            default:
+                break
+            }
         }
     }
     

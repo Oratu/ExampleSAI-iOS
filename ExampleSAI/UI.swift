@@ -95,9 +95,9 @@ public class SAICircleProgressView: UIView {
         self.borderLayer.path = p2.cgPath
         if let label = self.viewWithTag(1) as? UILabel {
             if let m = self.maxValue, let c = self.currentValue {
-                label.text = "\(c)/\(m)\n\(Int(round(self.progress*100)))%"
+                label.text = "\(c)/\(m)\n\(Int(floor(self.progress*100)))%"
             } else {
-                label.text = "\(Int(round(self.progress*100)))%"
+                label.text = "\(Int(floor(self.progress*100)))%"
             }
         }
         super.layoutSubviews()
